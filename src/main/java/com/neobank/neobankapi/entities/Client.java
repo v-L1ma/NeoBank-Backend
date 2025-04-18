@@ -1,9 +1,6 @@
 package com.neobank.neobankapi.entities;
 
-import java.time.Instant;
 import java.util.UUID;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,9 +26,6 @@ public class Client {
     private String password;
 
     private Double balance;
-
-    @CreationTimestamp
-    private Instant creationTimeStamp;
 
     public UUID getClientId() {
         return clientId;
@@ -72,14 +66,5 @@ public class Client {
     public void setBalance(Double balance) {
         this.balance = balance;
     }
-
-    public Instant getCreationTimeStamp() {
-        return creationTimeStamp;
-    }
-
-    public void setCreationTimeStamp(Instant creationTimeStamp) {
-        this.creationTimeStamp = creationTimeStamp;
-    }
-
 
 }

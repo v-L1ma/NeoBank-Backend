@@ -1,5 +1,9 @@
 package com.neobank.neobankapi.entities;
 
+import java.time.Instant;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +32,9 @@ public class Transaction {
     private Client receiver;
 
     private Double value;
+    
+    @CreationTimestamp
+    private Instant creationTimeStamp;
 
     public Long gettransactionId() {
         return transactionId;
@@ -59,6 +66,14 @@ public class Transaction {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    public Instant getCreationTimeStamp() {
+        return creationTimeStamp;
+    }
+
+    public void setCreationTimeStamp(Instant creationTimeStamp) {
+        this.creationTimeStamp = creationTimeStamp;
     }
 
 }
