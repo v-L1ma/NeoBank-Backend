@@ -2,6 +2,10 @@ package com.neobank.neobankapi.entities;
 
 import java.util.UUID;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.neobank.neobankapi.controllers.dto.LoginRequest;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +29,7 @@ public class Client {
 
     private String password;
 
-    private Double balance;
+    private double balance;
 
     public UUID getClientId() {
         return clientId;
@@ -59,12 +63,15 @@ public class Client {
         this.password = password;
     }
 
-    public Double getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public void setBalance(double value) {
+        this.balance = value;
     }
 
+    public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder){
+        return  passwordEncoder.matches(loginRequest.password(), this.password);
+    }
 }
