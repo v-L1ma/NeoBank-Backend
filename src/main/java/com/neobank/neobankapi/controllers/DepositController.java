@@ -29,11 +29,12 @@ public class DepositController {
             throw new BadCredentialsException("Conta inexistente!");
         }
 
-        if (clientFromDB.get().getBalance()<dto.value()) {
+        if (dto.value()<0) {
             throw new  ResponseStatusException(HttpStatus.EXPECTATION_FAILED);
         }
 
         clientFromDB.get().setBalance(dto.value());
+        clientRepository.save(clientFromDB.get()); 
 
         return ResponseEntity.ok().build();
 
