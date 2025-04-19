@@ -16,8 +16,8 @@ import com.neobank.neobankapi.repository.TransactionRepository;
 @RestController
 public class CreateTransaction {
 
-    private TransactionRepository transactionRepository;
-    private ClientRepository clientRepository;
+    private final TransactionRepository transactionRepository;
+    private final ClientRepository clientRepository;
 
     public CreateTransaction(TransactionRepository transactionRepository, ClientRepository clientRepository){
         this.transactionRepository = transactionRepository;

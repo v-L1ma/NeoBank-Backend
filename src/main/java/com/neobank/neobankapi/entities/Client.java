@@ -9,9 +9,8 @@ import com.neobank.neobankapi.controllers.dto.TransactionRequest;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,9 +18,8 @@ import jakarta.persistence.Table;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.UUID)
     @Column(name = "client_id")
-    private UUID clientId;
+    private String clientId;
 
     private String name;
 
@@ -32,11 +30,19 @@ public class Client {
 
     private double balance;
 
-    public UUID getClientId() {
+
+    @PrePersist
+    public void generateClientId() {
+        if (clientId == null) {
+            this.clientId = UUID.randomUUID().toString().replace("-", "");
+        }
+    }
+
+    public String getClientId() {
         return clientId;
     }
 
-    public void setClientId(UUID clientId) {
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
