@@ -68,7 +68,7 @@ public class Client {
     }
 
     public void setBalance(double value) {
-        this.balance = value;
+        this.balance += value;
     }
 
     public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder){

@@ -35,7 +35,7 @@ public class AdminUserConfig implements CommandLineRunner{
                 client.setName("admin");
                 client.setEmail("admin");
                 client.setPassword(passwordEncoder.encode("123"));
-                client.setBalance(0);
+                client.setBalance(500);
                 clientRepository.save(client);
             });
     }

@@ -3,6 +3,7 @@ package com.neobank.neobankapi.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ public class CreateClientController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     @PostMapping("/signup")
     public ResponseEntity<Void> newClient(@RequestBody CreateClientDto dto){
 
@@ -35,8 +37,9 @@ public class CreateClientController {
         var client = new Client();
         client.setName(dto.name());
         client.setEmail(dto.email());
-        client.setPassword(passwordEncoder);
+        client.setPassword(passwordEncoder.encode(dto.password()));
         client.setBalance(0.0);
+        clientRepository.save(client);
 
         return ResponseEntity.ok().build();
 

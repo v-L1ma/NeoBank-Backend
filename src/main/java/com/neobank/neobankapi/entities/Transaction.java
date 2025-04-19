@@ -31,7 +31,7 @@ public class Transaction {
     @JoinColumn(name= "receiver_id", referencedColumnName="client_id")
     private Client receiver;
 
-    private Double value;
+    private double value;
     
     @CreationTimestamp
     private Instant creationTimeStamp;
@@ -60,11 +60,11 @@ public class Transaction {
         this.receiver = receiver;
     }
 
-    public Double getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
