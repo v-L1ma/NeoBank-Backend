@@ -34,7 +34,7 @@ public class TokenController {
 
         var client = clientRepository.findByEmail(loginRequest.email());
 
-        if(client.isEmpty() && client.get().isLoginCorrect(loginRequest, bCryptPasswordEncoder)){
+        if(client.isEmpty() || !client.get().isLoginCorrect(loginRequest, bCryptPasswordEncoder)){
             throw new BadCredentialsException("Usuário ou senha inválidos!");
         }
 
