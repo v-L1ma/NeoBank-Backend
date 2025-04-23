@@ -1,6 +1,7 @@
 package com.neobank.neobankapi.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,7 +25,7 @@ public class GetTransactions {
     }
 
     @GetMapping("/transaction/{id}")
-    public ResponseEntity<List<Transaction>> listTransactions(@PathVariable("id") String id){
+    public ResponseEntity<List<Transaction>> listTransactions(@PathVariable("id") UUID id){
 
         var clientFromDb = clientRepository.findByClientId(id);
 

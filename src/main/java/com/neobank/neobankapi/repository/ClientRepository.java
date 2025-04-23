@@ -12,6 +12,6 @@ import com.neobank.neobankapi.entities.Client;
 public interface  ClientRepository extends JpaRepository<Client, UUID>{
 
     Optional<Client> findByEmail(String email);
-    Optional<Client> findByClientId(String id);
+    Optional<Client> findByClientId(UUID id);
 
 }
